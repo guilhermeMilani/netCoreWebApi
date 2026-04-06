@@ -11,7 +11,7 @@ API REST para gerenciamento de contatos, desenvolvida com ASP.NET Core e SQLite.
 
 ### 1. Clonar o repositório
 ```bash
-git clone <url-do-repositorio>
+git clone (https://github.com/guilhermeMilani/netCoreWebApi/blob/main/README.md)
 cd Backend
 ```
 
