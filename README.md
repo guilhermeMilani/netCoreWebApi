@@ -137,3 +137,20 @@ Com a aplicação rodando, acesse o Swagger em:
 ```
 http://localhost:5132/swagger
 ```
+
+## Frontend
+
+### Requisitos
+
+- [Node.js](https://nodejs.org/)
+
+### Como rodar
+```bash
+cd Frontend/contacts
+npm install
+npm run dev
+```
+
+A aplicação estará disponível em `http://localhost:5173`.
+
+> Certifique-se de que o backend está rodando antes de abrir o frontend.
