@@ -1,100 +1,139 @@
-## 🧪 Desafio Técnico - Desenvolvedor .NET Core
-📝 Descrição
+# Contacts API
 
-Crie uma pequena aplicação web com API em ASP.NET Core e, opcionalmente, uma interface simples em React ou Postman para testar os endpoints.
+API REST para gerenciamento de contatos, desenvolvida com ASP.NET Core e SQLite.
 
----
-## 🎯 Objetivos
-📌 Back-End (.NET Core)
+## Requisitos
 
-Crie uma API para gerenciamento de contatos com as seguintes funcionalidades:
-Endpoints obrigatórios
+- [.NET 8 SDK](https://dotnet.microsoft.com/download)
+- [Postman](https://www.postman.com/downloads/)
 
-    GET /contacts: listar todos os contatos
+## Como rodar
 
-    GET /contacts/{id}: buscar contato por ID
-
-    POST /contacts: adicionar novo contato
-
-    PUT /contacts/{id}: editar contato
-
-    DELETE /contacts/{id}: remover contato
----    
-Modelo de dados
-```
-public class Contact
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Phone { get; set; }
-}
-
-```
----
-
-## 🔐 Requisitos Técnicos do Back-End
-* ASP.NET Core (preferencialmente versão 8 ou superior)
-* Entity Framework Core (banco SQLite)
-* Seguir padrão REST
-* Código organizado (separar controller, model e context)
-* Permitir testes via Swagger
-
----    
-
-## 💻 (Opcional) Front-End (React)
-
-* Página para listar contatos
-* Formulário para criar/editar contatos
-* Botões para excluir
-* Pode ser feito com Vite + Tailwind ou CRA + CSS básico
-
---- 
-
-## ✅ Critérios de Avaliação
-
-|Critério	                       | Peso |
-|--------------------------------|-----------|
-|Funcionamento básico da API	   |⭐⭐⭐⭐ |
-|Organização e clareza do código |⭐⭐⭐ |
-|Uso correto do Entity Framework |⭐⭐ |
-|Uso de boas práticas REST	     |⭐⭐ |
-|(Opcional) Interface React	     |⭐ |         
-
-
---- 
-## 📦 Entrega esperada
-
-- Repositório GitHub com:  
-  - Código fonte da API
-  - README com instruções para rodar (via Swagger ou Postman)
-  - (Opcional) Código front-end
-  
----
-
-## ⏱️ Tempo sugerido para conclusão
-
-2 a 3 dias úteis
-
----
-## ▶️ Como rodar o projeto
-
-### 🔙 Backend (.NET Core)
-
-1. Restaure os pacotes:
+### 1. Clonar o repositório
 ```bash
-dotnet restore
+git clone <url-do-repositorio>
+cd Backend
 ```
 
-2. Execute as migrações e crie o banco:
+### 2. Aplicar as migrations
 ```bash
-dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-3. Execute a aplicação:
+### 3. Rodar a aplicação
 ```bash
 dotnet run
 ```
 
-Acesse `http://localhost:5000/swagger` para testar os endpoints.
+A API estará disponível em `http://localhost:5132`.
+
+---
+
+## Endpoints
+
+### Listar todos os contatos
+```
+GET /api/contacts
+```
+
+**Resposta:**
+```json
+[
+  {
+    "id": 1,
+    "name": "Guilherme",
+    "email": "gui@email.com",
+    "phone": "47999999999"
+  }
+]
+```
+
+---
+
+### Buscar contato por ID
+```
+GET /api/contacts/{id}
+```
+
+**Resposta:**
+```json
+{
+  "id": 1,
+  "name": "Guilherme",
+  "email": "gui@email.com",
+  "phone": "47999999999"
+}
+```
+
+---
+
+### Criar contato
+```
+POST /api/contacts
+```
+
+**Headers:**
+```
+Content-Type: application/json
+```
+
+**Body:**
+```json
+{
+  "name": "Guilherme",
+  "email": "gui@email.com",
+  "phone": "47999999999"
+}
+```
+
+**Resposta:** `201 Created`
+
+---
+
+### Atualizar contato
+```
+PUT /api/contacts/{id}
+```
+
+**Headers:**
+```
+Content-Type: application/json
+```
+
+**Body:**
+```json
+{
+  "name": "Guilherme Silva",
+  "email": "gui@email.com",
+  "phone": "47999999999"
+}
+```
+
+**Resposta:** `204 No Content`
+
+---
+
+### Deletar contato
+```
+DELETE /api/contacts/{id}
+```
+
+**Resposta:** `204 No Content`
+
+---
+
+## Testando no Postman
+
+1. Abra o Postman e crie uma nova **Collection** chamada `Contacts API`
+2. Para cada endpoint, crie uma nova requisição dentro da collection
+3. Nos endpoints `POST` e `PUT`, vá em **Body → raw → JSON** e cole o body correspondente
+4. Certifique-se de que a aplicação está rodando antes de fazer as requisições
+
+---
+
+## Documentação interativa
+
+Com a aplicação rodando, acesse o Swagger em:
+```
+http://localhost:5132/swagger
+```
